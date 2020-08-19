@@ -1,0 +1,107 @@
+<nav [ngClass]="{ sidebarPushRight: isActive, collapsed: collapsed }" class="sidebar">
+    <div class="list-group">
+
+        <div class="row" id="">
+            <div class="col-12">
+
+                <div class="nav flex-column nav-pills accordion" id="idAccordion" role="tablist"
+                    aria-orientation="vertical">
+
+                    <a class="card-header nav-link active" id="home" data-toggle="pill" role="tab" aria-selected="true"
+                        routerLink="/home">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseHome" aria-expanded="false" aria-controls="collapseHome">
+                            <i class="fa fa-fw fa-dashboard"></i>&nbsp;
+                            <a class="col pl-10"> Home</a>
+                        </button>
+                    </a>
+
+                    <div id="collapseHome" class="collapse" aria-labelledby="home" data-parent="#idAccordion">
+                    </div>
+
+                    <a class="card-header nav-link" id="idCommerce" data-toggle="pill" role="tab" aria-selected="false">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#idCollapseCommerce" aria-expanded="false" aria-controls="idCollapseCommerce"
+                            (click)="toggleCollapsedMenu('idCommerce')">
+                            <div class="row">
+                                <div class="col-sm-1">
+                                    <i class="fa fa-shopping-basket"></i>
+                                </div>
+                                <div class="col-sm-8">
+                                    <a class="col pl-10"> Produtos</a>
+                                </div>
+                                <div class="col-sm-1" [ngClass]="{ collapsedMenuCommerce: collapsedMenuCommerce }">
+                                    <i
+                                        class="fa fa-fw fa-angle-double-{{ collapsedMenuCommerce ? 'down' : 'right' }}"></i>
+                                </div>
+                            </div>
+                        </button>
+                    </a>
+                    <div id="idCollapseCommerce" class="collapse" aria-labelledby="idCommerce"
+                        data-parent="#idAccordion">
+                        <div class="card nav flex-column nav-pills">
+
+                            <a class="nav-link cardInterno" id="v-pills-settings-tab" data-toggle="pill"
+                                routerLink="/produtos/listar" role="tab" aria-controls="v-pills-settings"
+                                aria-selected="false">
+                                <i class="fa fa-list-alt"></i>&nbsp; Listar</a>
+
+                            <a class="nav-link cardInterno" id="v-pills-messages-tab" data-toggle="pill"
+                                routerLink="/produtos/visualizar" role="tab" aria-controls="v-pills-messages"
+                                aria-selected="false">
+                                <i class="fa fa-eye"></i>&nbsp; Visualizar</a>
+                            <a class="nav-link cardInterno" id="v-pills-messages-tab" data-toggle="pill"
+                                routerLink="/components" role="tab" aria-controls="v-pills-messages"
+                                aria-selected="false">
+                                <i class="fa fa-pencil-square-o"></i>&nbsp; Editar</a>
+                        </div>
+
+                    </div>
+
+                    <a class="card-header nav-link" id="idCliente" data-toggle="pill" role="tab" aria-selected="false">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#idCollapseCliente" aria-expanded="false" aria-controls="idCollapseCliente"
+                            (click)="toggleCollapsedMenu('idCliente')">
+                            <div class="row">
+                                <div class="col-sm-1">
+                                    <i class="fa fa-users"></i>
+                                </div>
+                                <div class="col-sm-8">
+                                    <a class="col pl-10"> Clientes</a>
+                                </div>
+                                <div class="col-sm-1" [ngClass]="{ collapsedMenuCliente: collapsedMenuCliente }">
+                                    <i
+                                        class="fa fa-fw fa-angle-double-{{ collapsedMenuCliente ? 'down' : 'right' }}"></i>
+                                </div>
+                            </div>
+                        </button>
+                    </a>
+                    <div id="idCollapseCliente" class="collapse" aria-labelledby="idCliente" data-parent="#idAccordion">
+                        <div class="card nav flex-column nav-pills">
+
+                            <a class="nav-link cardInterno" id="v-pills-settings-tab" data-toggle="pill"
+                                routerLink="/users/listar" role="tab" aria-controls="v-pills-settings"
+                                aria-selected="false">
+                                <i class="fa fa-list-alt"></i>&nbsp; Listar</a>
+
+                            <a class="nav-link cardInterno" id="v-pills-messages-tab" data-toggle="pill"
+                                routerLink="/users/visualizar" role="tab" aria-controls="v-pills-messages"
+                                aria-selected="false">
+                                <i class="fa fa-eye"></i>&nbsp; Visualizar</a>
+                            <a class="nav-link cardInterno" id="v-pills-messages-tab" data-toggle="pill"
+                                routerLink="/users/editar" role="tab" aria-controls="v-pills-messages"
+                                aria-selected="false">
+                                <i class="fa fa-pencil-square-o"></i>&nbsp; Editar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div (click)="toggleCollapsed()" [ngClass]="{ collapsed: collapsed }" class="toggle-button">
+        <i class="fa fa-fw fa-angle-double-{{ collapsed ? 'right' : 'left' }}"></i>&nbsp;
+        <span>{{ 'Collapse Sidebar' }}</span>
+    </div>
+</nav>

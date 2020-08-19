@@ -1,0 +1,82 @@
+<nav [ngClass]="{ sidebarPushRight: isActive, collapsed: collapsed }" class="sidebar">
+    <div class="list-group">
+        <div class="">
+            <div class="">
+                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <!-- <a [routerLinkActive]="['router-link-active']" class="list-group-item" routerLink="/dashboard">
+                        <i class="fa fa-fw fa-dashboard"></i>&nbsp;
+                        <span>{{ 'Dashboard'  }}</span>
+                    </a> -->
+
+                    <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" routerLink="/home" role="tab"
+                        aria-controls="v-pills-home" aria-selected="true">
+                        <i class="fa fa-fw fa-dashboard"></i>&nbsp;
+                        <span class="col pl-10"> Home</span>
+                    </a>
+
+                    <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" routerLink="/charts" role="tab"
+                        aria-controls="v-pills-profile" aria-selected="false">
+
+                        <i class="fa fa-bar-chart"></i>&nbsp;
+                        <span class="col pl-10"> Charts</span>
+                    </a>
+
+                    <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" routerLink="/forms" role="tab"
+                        aria-controls="v-pills-messages" aria-selected="false">
+                        <i class="fa fa-pencil-square-o"></i>&nbsp;
+                        <span class="col pl-10"> Forms</span>
+                    </a>
+
+
+                    <a class="nav-link" data-toggle="collapse" href="#collapseProdutos" role="button"
+                        aria-expanded="false" aria-controls="collapseProdutos">
+                        <i class="fa fa-shopping-basket"></i>&nbsp;
+                        <span class="col pl-10"> E-Commerce</span>
+                    </a>
+                    <a class="nav-link collapse" style="margin-left: 30px;" id="collapseProdutos" data-toggle="pill"
+                        routerLink="/produtos" role="tab" aria-controls="v-pills-settings" aria-selected="false">
+                        <i class="fa fa-inbox" style="margin-right: 10px;"></i>&nbsp;
+                        <span class="col p-0">Lista de Produtos</span>
+                    </a>
+
+                    <a class="nav-link" data-toggle="collapse" href="#collapseClientes" role="button"
+                        aria-expanded="false" aria-controls="collapseClientes">
+                        <i class="fa fa-users"></i>
+                        &nbsp;
+                        <span class="col pl-10"> Clientes</span>
+                    </a>
+                    <a class="nav-link collapse" style="margin-left: 30px;" id="collapseClientes" data-toggle="pill"
+                        routerLink="/users" role="tab" aria-controls="v-pills-settings" aria-selected="false">
+                        <i class="fa fa-users" style="margin-right: 10px;"></i>&nbsp;
+                        <span class="col p-0">Lista de Clientes</span>
+                    </a>
+                    <a class="nav-link collapse" style="margin-left: 30px;" id="collapseClientesCriar"
+                        data-toggle="pill" routerLink="/produtos" role="tab" aria-controls="v-pills-settings"
+                        aria-selected="false"><span class="col p-0"><i class="fa fa-users"
+                                style="margin-right: 10px;"></i>&nbsp;
+                            Cadastrar Clientes</span>
+                    </a>
+
+                    <a>
+
+                        <a (click)="myFunction()" class="nav-link" id="v-pills-profile-tab" data-toggle="pill"
+                            routerLink="/charts" role="tab" aria-controls="v-pills-profile"
+                            aria-selected="false">Produtos</a>
+
+                        <div id="Demo" class="w3-dropdown-content w3-bar-block w3-border">
+                            <a href="#" class="w3-bar-item w3-button">Link 1</a>
+                            <a href="#" class="w3-bar-item w3-button">Link 2</a>
+                            <a href="#" class="w3-bar-item w3-button">Link 3</a>
+                        </div>
+                    </a>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div (click)="toggleCollapsed()" [ngClass]="{ collapsed: collapsed }" class="toggle-button">
+        <i class="fa fa-fw fa-angle-double-{{ collapsed ? 'right' : 'left' }}"></i>&nbsp;
+        <span>{{ 'Collapse Sidebar' }}</span>
+    </div>
+</nav>

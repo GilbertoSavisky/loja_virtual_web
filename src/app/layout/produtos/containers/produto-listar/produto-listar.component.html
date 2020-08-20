@@ -24,37 +24,62 @@
                     <h3 class="card-title">Responsive Hover Table</h3>
 
                     <div class="card-tools">
-                        <div class="input-group input-group-sm" style="width: 150px;">
-                            <input type="text" name="table_search" [(ngModel)]="_pesquisa"
-                                class="form-control float-right" placeholder="Search">
+                        <div class="input-group input-group-sm" style="width: 250px;">
 
-                            <div class="input-group-append">
-                                <button type="submit" (click)="produtosFiltrados()" class="btn btn-default"><i
-                                        class="fas fa-search"></i>pesquiar</button>
+
+
+                            <div class="input-group input-group-sm mb-3">
+
+                                <input type="text" class="form-control" [(ngModel)]="_pesquisa"
+                                    placeholder="Pesquisar por nome" (keyup)="produtosFiltrados()">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm"><i
+                                            class="fa fa-search"></i></span>
+                                </div>
                             </div>
+
+
                         </div>
                     </div>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body ">
-                    <table class="table table-hover ">
+                    <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th style="width: 5%">ID</th>
+                                <th>Imagem</th>
                                 <th style="width: 20%">Nome</th>
                                 <th>Descrição</th>
                                 <th>Status</th>
-                                <th>Reason</th>
+                                <th style="width: 10%">Ações</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let produto of todosProdutos">
-                                <td>{{produto.id}}</td>
-                                <td>{{produto.nome}}</td>
-                                <td>{{produto.descricao}}</td>
-                                <td><span class="tag tag-success">{{produto.deletado ? 'inativo' : 'ativo'}}</span></td>
-                                <td><img width="60" height="60" src={{produto.imagens[0]}}></td>
-                                <button class="btn btn-primary" (click)="findProdutoById(produto.id)">click</button>
+                            <tr *ngFor="let produto of _produtosFiltrados">
+                                <td><img width="60" height="60" src={{produto?.imagens[0]}}></td>
+
+                                <td class="idTD">{{produto?.nome}}</td>
+                                <td class="idTD">{{produto?.descricao}}</td>
+                                <td class="tdStatus">
+                                    <span *ngIf="!produto.deletado" class="spanStatus alert alert-success"
+                                        role="alert">Ativo</span>
+                                    <span *ngIf="produto.deletado" class="spanStatus alert alert-danger"
+                                        role="alert">Inativo</span>
+                                </td>
+                                <td class="idTD">
+                                    <button class="btn btn-sm btn-outline-success" (click)="editar(produto)"
+                                        (click)="findProdutoById(produto.id)" style=" width: 30px;">
+                                        <i class="fa fa-pencil-square-o"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-primary" style="width: 30px"
+                                        (click)="findProdutoById(produto.id)">
+                                        <i class="fa fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger" (click)="findProdutoById(produto.id)"
+                                        style="width: 30px">
+                                        <i class="fa fa-trash-o"></i>
+                                    </button>
+                                </td>
                         </tbody>
                     </table>
                 </div>

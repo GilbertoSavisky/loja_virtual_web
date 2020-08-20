@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Produto } from '../../../../models/produto';
 import { ProdutoService } from '../../services/produto.service';
 
@@ -11,8 +12,10 @@ export class ProdutoListarComponent implements OnInit {
 
   todosProdutos: Produto[];
   _pesquisa = '';
+  _produtosFiltrados = [];
 
-  constructor(private produtoService: ProdutoService) { }
+
+  constructor(private produtoService: ProdutoService, private router: Router) { }
 
   ngOnInit(): void {
     this.produtoService.getProdutos().subscribe(data => {
@@ -22,12 +25,18 @@ export class ProdutoListarComponent implements OnInit {
           ...e.payload.doc.data() as Produto
         };
       });
-      //console.log('produto = ', this.todosProdutos[0].tamanhos);
+      this._produtosFiltrados = this.todosProdutos;
+      // console.log('produto imagem = ', this._produtosFiltrados);
     });
   }
 
   create(produto: Produto) {
     this.produtoService.createProduto(produto);
+  }
+
+  editar(produto: Produto) {
+    console.log('--- = ', produto);
+    this.router.navigate(['/produtos/editar']);
   }
 
   update(produto: Produto) {
@@ -48,20 +57,19 @@ export class ProdutoListarComponent implements OnInit {
 
   // tslint:disable-next-line: no-shadowed-variable
   produtosFiltrados() {
-    let produtosFiltrados = [];
-
+    this._produtosFiltrados = [];
     if (this.pesquisa === '') {
-      produtosFiltrados.push(this.todosProdutos);
+      this._produtosFiltrados = (this.todosProdutos);
       console.log('todos = ', this.todosProdutos);
     } else {
       this.todosProdutos.map((p) => {
         if (p.nome.toLocaleLowerCase().includes(this.pesquisa.toLocaleLowerCase())) {
-          produtosFiltrados.push(p);
+          this._produtosFiltrados.push(p);
         }
       });
-      console.log('filtrados = ', produtosFiltrados);
-      return produtosFiltrados;
     }
+    console.log('filtrados = ', this._produtosFiltrados);
+    return this._produtosFiltrados;
   }
 
   findProdutoById(id: string) {
